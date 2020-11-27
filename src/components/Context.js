@@ -125,10 +125,19 @@ export class DataProvider extends Component {
       var response =  firebase.firestore().collection('products').get();
       response.then((doc)=>{
           this.setState({products: doc.docs })
+        //   Cuando devuelva los productos, me devuelve todos las ordenes si es admin, sino los que cumplan el where
           if(this.state.user){
-            firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
-                this.setState({orders: docer.docs})
-            })
+              if(this.state.user.admin){
+                  firebase.firestore().collection('orders').get().then((docer)=>{
+                      this.setState({orders: docer.docs})
+                  })
+                  
+                } else {
+                      firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
+                          this.setState({orders: docer.docs})
+                      })
+
+              }
         }
       });
 
@@ -139,11 +148,7 @@ export class DataProvider extends Component {
         localStorage.setItem('dataTotal', JSON.stringify(this.state.total))
         localStorage.setItem('Useres', JSON.stringify(this.state.user))
 
-        if(this.state.user){
-            firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
-                this.setState({orders: docer.docs})
-            })
-        }
+       
     };
 
 
@@ -163,8 +168,25 @@ export class DataProvider extends Component {
             response.then((usin)=>{
 
                 this.setState({user: usin.data()});
+
+                if(this.state.user){
+                    if(this.state.user.admin){
+                        firebase.firestore().collection('orders').get().then((docer)=>{
+                            this.setState({orders: docer.docs})
+                        })
+                        
+                      } else {
+                            firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
+                                this.setState({orders: docer.docs})
+                            })
+        
+                    }
+                }
             })
-        }
+        } 
+        
+
+
     }
    
 

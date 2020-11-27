@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { DataContext } from '../Context';
 
@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 export const Payment = () => {
     
     const {user, cart, total, resetData} = useContext(DataContext);
+    const [confirm, setConfirm] = useState(false)
     
     
       const  sendOrder = (event) => {
@@ -31,31 +32,45 @@ export const Payment = () => {
             firebase.firestore().collection('orders').add(data).then((doc)=>{
                 console.log(user)
                 resetData();
+                setConfirm(true)
              });
         }
         return (
+            confirm ?
             <Conten>
-                {
-                    user ? 
-                    <>
-                        <h2 style={{textAlign: "center"}}>Ultimos datos para confirmar</h2>
-                        <form className='formis' onSubmit={sendOrder}>
-                            <div className='dat'>
-                                <input className='inpute' name="direction" placeholder="Dirección"/>
-                                <input className='inpute' name="number" placeholder="Número de telefono"/>
-                                <button className="btn-confirm" >Confirmar pedido</button>
-                            </div>
-                        </form>
-                    </>:
-                    <div className='container'>
-                        <h2 style={{textAlign: "center"}}>Aún no has iniciado sesión</h2>
-                        <div className='btn-container'>
-                        <Link to='/login'>
-                            <button className="btn-confirm" >Iniciar</button>
-                        </Link> 
-                        </div>
+                <div className='container'>
+                    <h2 style={{textAlign: "center"}}>Gracias por elegirnos, se comunicarán contigo cuando pasen a dejar tu pedido</h2>
+                    <div className='btn-container'>
+                    <Link to='/'>
+                        <button className="btn-confirm" >Seguir comprando</button>
+                    </Link> 
                     </div>
-                }
+                </div>
+            </Conten>
+
+            :
+            <Conten>
+            {
+                user ? 
+                <>
+                    <h2 style={{textAlign: "center"}}>Ultimos datos para confirmar</h2>
+                    <form className='formis' onSubmit={sendOrder}>
+                        <div className='dat'>
+                            <input className='inpute' name="direction" placeholder="Dirección"/>
+                            <input className='inpute' name="number" placeholder="Número de telefono"/>
+                            <button className="btn-confirm" >Confirmar pedido</button>
+                        </div>
+                    </form>
+                </>:
+                <div className='container'>
+                    <h2 style={{textAlign: "center"}}>Aún no has iniciado sesión</h2>
+                    <div className='btn-container'>
+                    <Link to='/login'>
+                        <button className="btn-confirm" >Iniciar</button>
+                    </Link> 
+                    </div>
+                </div>
+            }
             </Conten>
         )
 
@@ -117,6 +132,15 @@ const Conten = styled.div`
 
     .btn-confirm:active{
         transform: translateY(2px);
+    }
+
+
+    @media screen and (max-width: 768px){
+        .btn-container{
+            width: 200px;
+            margin: 0 auto;
+            /* justify-content: center; */
+        }
     }
 
 `

@@ -4,7 +4,7 @@ import CardOrder from '../CardOrder'
 import { DataContext } from '../Context'
 
 export default function Orders() {
-    const {orders, users} = useContext(DataContext);
+    const {orders} = useContext(DataContext);
 
     return (
         <Content>
