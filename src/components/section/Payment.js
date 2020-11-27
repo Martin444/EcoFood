@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { DataContext } from '../Context';
 
 import firebase from '../../Utils/firebase'
+import { Link } from 'react-router-dom';
 
 export const Payment = () => {
     
@@ -34,14 +35,27 @@ export const Payment = () => {
         }
         return (
             <Conten>
-                <h2 style={{textAlign: "center"}}>Ultimos datos para confirmar</h2>
-                <form className='formis' onSubmit={sendOrder}>
-                    <div className='dat'>
-                        <input className='inpute' name="direction" placeholder="Dirección"/>
-                        <input className='inpute' name="number" placeholder="Número de telefono"/>
-                        <button className="btn-confirm" >Confirmar pedido</button>
+                {
+                    user ? 
+                    <>
+                        <h2 style={{textAlign: "center"}}>Ultimos datos para confirmar</h2>
+                        <form className='formis' onSubmit={sendOrder}>
+                            <div className='dat'>
+                                <input className='inpute' name="direction" placeholder="Dirección"/>
+                                <input className='inpute' name="number" placeholder="Número de telefono"/>
+                                <button className="btn-confirm" >Confirmar pedido</button>
+                            </div>
+                        </form>
+                    </>:
+                    <div className='container'>
+                        <h2 style={{textAlign: "center"}}>Aún no has iniciado sesión</h2>
+                        <div className='btn-container'>
+                        <Link to='/login'>
+                            <button className="btn-confirm" >Iniciar</button>
+                        </Link> 
+                        </div>
                     </div>
-                </form>
+                }
             </Conten>
         )
 
@@ -70,6 +84,19 @@ const Conten = styled.div`
         position: relative;
     }
 
+    .container{
+        width: 100%;
+        display: flex;
+        justify-content:center;
+        flex-direction: column;
+    }
+
+    .btn-container{
+        width: 400px;
+        margin: 0 auto;
+        /* justify-content: center; */
+    }
+
     .btn-confirm{
         /* position: absolute;
         left: 30px; */
@@ -82,6 +109,10 @@ const Conten = styled.div`
         font-size: 20px;
         font-weight: 600;
         background-color: black;
+    }
+
+    .btn-confirm:hover{
+        cursor: pointer;
     }
 
     .btn-confirm:active{
