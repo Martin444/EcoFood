@@ -23,6 +23,30 @@ export class DataProvider extends Component {
 
     loginGoogle = () => {
         auth().signInWithPopup(provider).then((users)=>{
+
+            firebase.firestore().collection('users').doc(users.user.uid).onSnapshot(snap=>{
+                if(snap.exists){
+                    this.setState({user: snap.data()})
+                } else {
+                    const newDate = new Date().toISOString();
+                    const data = {
+                        'date': newDate,
+                        'uid' : users.user.uid,
+                        'displayName' : users.user.displayName,
+                        'email' : users.user.email,
+                        'photoUrl' : users.user.photoURL,
+                        'numberPhone' : users.user.phoneNumber,
+                        'admin' : false
+                     }
+                    var response =  firebase.firestore().collection('users').doc(users.user.uid).set(data);
+
+                    response.then(()=>{
+                        firebase.firestore().collection('users').doc(users.user.uid).onSnapshot(snap =>{
+                            this.setState({user: snap.data()})
+                        })
+                    })
+                }
+            })
             var response =  firebase.firestore().collection('users').doc(users.user.uid).get();
             response.then((doc)=>{
                 if(doc.exists){
@@ -128,14 +152,18 @@ export class DataProvider extends Component {
         //   Cuando devuelva los productos, me devuelve todos las ordenes si es admin, sino los que cumplan el where
           if(this.state.user){
               if(this.state.user.admin){
-                  firebase.firestore().collection('orders').get().then((docer)=>{
-                      this.setState({orders: docer.docs})
+                  firebase.firestore().collection('orders').onSnapshot(snapshoot => {
+                      console.log(snapshoot)
                   })
                   
+                  
                 } else {
-                      firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
-                          this.setState({orders: docer.docs})
-                      })
+                      firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
+                        console.log(snapshoot)
+                    })
+                      
+                      
+                  
 
               }
         }
@@ -164,25 +192,32 @@ export class DataProvider extends Component {
 
         const dataUser = JSON.parse(localStorage.getItem('Useres'));
         if(dataUser !== null){
-            var response =  firebase.firestore().collection('users').doc(dataUser.uid).get();
-            response.then((usin)=>{
+           firebase.firestore().collection('users').doc(dataUser.uid).onSnapshot(snap =>{
+               console.log(snap.data())
+                   this.setState({user: snap.data()});
 
-                this.setState({user: usin.data()});
+                   if(this.state.user){
+                       if(this.state.user.admin){
+                           firebase.firestore().collection('orders').onSnapshot(snapshoot => {
+                               this.setState({orders: snapshoot.docs})
+                           })
+                           
+                           
+                         } else {
+                               firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
+                                   this.setState({orders: snapshoot.docs})
+                               })
+           
+                       }
+                   }
+           });
+           
+            // response.then((usin)=>{
 
-                if(this.state.user){
-                    if(this.state.user.admin){
-                        firebase.firestore().collection('orders').get().then((docer)=>{
-                            this.setState({orders: docer.docs})
-                        })
-                        
-                      } else {
-                            firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).get().then((docer)=>{
-                                this.setState({orders: docer.docs})
-                            })
+
+            // })
         
-                    }
-                }
-            })
+        
         } 
         
 
