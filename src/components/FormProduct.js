@@ -47,7 +47,25 @@ export default function FormProduct() {
         }
 
         firebase.firestore().collection('products').add(data).then(data=>{
-            setSendForm(true)
+
+            const data2 = {
+                'title': form.get('name'),
+                'date' : newDate,
+                'description': form.get('description'),
+                'content': form.get('conten'),
+                'price': form.get('price'),
+                'src': petPhotom,
+                'uid': data.id
+                // 'profilePic':props.user.photoURL,
+                // 'type': form.get('type'),
+                // 'userContact': props.user.email,
+                // 'userName': props.user.displayName,
+            }
+
+            firebase.firestore().collection('products').doc(data.id).set(data2).then((da)=>{
+
+                setSendForm(true)
+            })
         })
     }
 

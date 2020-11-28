@@ -11,6 +11,7 @@ export class Products extends Component {
 
     render() {
         const {products,addCart} = this.context;
+        console.log(products)
         return (
             <div id="product">
             <Banner/>
