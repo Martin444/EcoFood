@@ -129,16 +129,16 @@ const DivForm = styled.div`
     }
 
     .inputer{
-        width: 200px;
+        width: 14%;
         padding: 10px;
-        margin: 10px;
+        margin: 8px 2px;
         border-radius: 5px;
     }
 
     .btn-load{
         padding:10px;
         color: white;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 600;
         background-color: black;
         border:none;
@@ -169,15 +169,17 @@ const DivForm = styled.div`
             margin: 10px;
             border-radius: 5px;
         }
-
+        
         .btn-load{
+            width: 100%;
             padding:10px;
             color: white;
-            font-size: 10px;
+            font-size: 15px;
             font-weight: 600;
             background-color: black;
             border:none;
             border-radius: 10px;
+            margin: 10px;
         }
 
     }
