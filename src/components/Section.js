@@ -16,8 +16,8 @@ export class Section extends Component {
                     <Route path="/ordenes" component={Orders} exact  />
                     <Route path="/product/:id" component={Details} exact />
                     <Route path="/login" component={Login} exact />
-                    <Route path="/cart" component={Cart}  exact/>
-                    <Route path="/payment" component={Payment} exact />
+                    <Route path="/carrito" component={Cart}  exact/>
+                    <Route path="/confirmar" component={Payment} exact />
             </section>
         )
     }

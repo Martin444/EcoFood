@@ -50,7 +50,7 @@ export class Header extends Component {
                         </ul>
                         <div className="nav-cart">
                             <span>{cart.length}</span>
-                            <Link to="/cart">
+                            <Link to="/carrito">
                                 <img src={CartIcon} alt="" width="30"/>
                             </Link>
                         </div>

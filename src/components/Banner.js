@@ -44,4 +44,23 @@ const Bann = styled.div`
         font-size: 50px;
     }
 
+    @media screen and (max-width: 768px){
+        .ban-content{
+            margin: 0;
+            padding:0 auto;
+            display: block;
+            justify-content: center;
+            height: 100%;
+            margin-top:90px;
+        }
+        .title{
+            text-align:center;
+            font-size: 50px;
+        }
+
+        h3{
+            font-size: 30px;
+        }
+    }
+
 `

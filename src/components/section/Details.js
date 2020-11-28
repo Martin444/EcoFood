@@ -31,7 +31,7 @@ export class Details extends Component {
         const {product} = this.state;
         const {addCart} = this.context;
         return (
-            <>
+            <div className='contenido'>
                 {
                     product.map(item =>(
                         <div className="details" key={item.id}>
@@ -41,19 +41,20 @@ export class Details extends Component {
                                     <h2>{item.data().title}</h2>
                                     <span>${item.data().price}</span>
                                 </div>
-                                <Colors colors={item.data().colors}/>
                                 <p>{item.data().description}</p>
                                 <p>{item.data().content}</p>
-                                <Link to="/cart" className="cart" onClick={() => addCart(item.data())}>
+                                <Link to="/carrito" className="cart" onClick={() => addCart(item.data())}>
                                     Add to cart
                                 </Link>
                             </div>
                         </div>
                     ))
                 }
-            </>
+            </div>
         )
     }
 }
+
+
 
 export default Details

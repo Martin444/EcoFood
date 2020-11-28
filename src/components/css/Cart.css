@@ -1,7 +1,7 @@
 section .cart{
     position: relative;
     border: 1px solid #ccc;
-    width: 1200px;
+    /* width: 1200px; */
 }
 
 .conten-cart{
@@ -12,9 +12,9 @@ section .cart{
     justify-content: center;
 }
 
-.details{
+/* .details{
     width: 1200px;
-}
+} */
 .amount span{
     color: crimson;
     padding: 0 24px;
@@ -59,4 +59,11 @@ section .cart{
 .total h3{
     margin-right: 50px;
     color: crimson;
+}
+
+@media (max-width: 769px){
+    .total{
+        width: 100%;
+        justify-content: space-around;
+    }
 }
