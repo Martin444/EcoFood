@@ -9,9 +9,16 @@ export class Products extends Component {
 
     static contextType = DataContext;
 
+
     render() {
-        const {products,addCart} = this.context;
-        console.log(products)
+        const {products,addCart, userAdmin, removeProductAdmin} = this.context;
+
+        
+
+
+      
+
+   
         return (
             <div id="product">
             <Banner/>
@@ -28,7 +35,12 @@ export class Products extends Component {
                                </h3>
                                <span>${product.data().price}</span>
                                <p>{product.data().description}</p>
-                               <button onClick={()=> addCart(product.data())}>Añadir al carrito</button>
+                               {
+                                   userAdmin ?
+                                    <button onClick={()=> removeProductAdmin(product.data())}>Eliminar producto</button>
+                                    :
+                                    <button onClick={()=> addCart(product.data())}>Añadir al carrito</button>
+                               }
                            </div>
                        </div>
                    ))

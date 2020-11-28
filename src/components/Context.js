@@ -10,8 +10,11 @@ export class DataProvider extends Component {
         products: [],
         cart: [],
         total: 0,
-        orders: null
+        orders: null,
+        userAdmin: false
     };
+
+
 
     logOut = () => {
         this.setState({user: null})
@@ -77,6 +80,11 @@ export class DataProvider extends Component {
                 }
             })
         })
+    }
+
+    removeProductAdmin = (product) =>{
+        console.log(product.uid)
+        firebase.firestore().collection('products').doc(product.uid).delete();
     }
 
     addCart = (producter) =>{
@@ -197,26 +205,18 @@ export class DataProvider extends Component {
 
                    if(this.state.user){
                        if(this.state.user.admin){
+                           
                            firebase.firestore().collection('orders').onSnapshot(snapshoot => {
-                               this.setState({orders: snapshoot.docs})
+                               this.setState({orders: snapshoot.docs, userAdmin: true})
                            })
-                           
-                           
                          } else {
                                firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
-                                   this.setState({orders: snapshoot.docs})
+                                   this.setState({orders: snapshoot.docs, userAdmin: false})
                                })
            
                        }
                    }
            });
-           
-            // response.then((usin)=>{
-
-
-            // })
-        
-        
         } 
         
 
@@ -225,11 +225,11 @@ export class DataProvider extends Component {
    
 
     render() {
-        const {products, cart,total, user, orders} = this.state;
-        const {addCart,reduction,increase,removeProduct,getTotal, loginGoogle, resetData, logOut} = this;
+        const {products, cart,total, user, orders, userAdmin} = this.state;
+        const {addCart,reduction,increase,removeProduct,getTotal, loginGoogle, resetData, logOut, removeProductAdmin} = this;
         return (
             <DataContext.Provider 
-            value={{products, addCart, cart, reduction,increase,removeProduct,total,getTotal, loginGoogle, user, resetData, orders, logOut}}>
+            value={{products, addCart, cart, reduction,increase,removeProduct,total,getTotal, loginGoogle, user, resetData, orders, logOut, userAdmin, removeProductAdmin}}>
                 {this.props.children}
             </DataContext.Provider>
         )
