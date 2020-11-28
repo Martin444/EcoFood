@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import Banner from '../Banner';
 import {DataContext} from '../Context'
 import '../css/Products.css'
+import FormProduct from '../FormProduct';
 
 export class Products extends Component {
 
@@ -13,7 +14,7 @@ export class Products extends Component {
         return (
             <div id="product">
             <Banner/>
-
+                <FormProduct/>
                {
                    products.map(product =>(
                        <div className="card" key={product.id}>

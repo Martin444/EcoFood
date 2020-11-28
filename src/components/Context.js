@@ -146,8 +146,7 @@ export class DataProvider extends Component {
     };
     
     componentWillMount(){
-      var response =  firebase.firestore().collection('products').get();
-      response.then((doc)=>{
+       firebase.firestore().collection('products').onSnapshot(doc=>{
           this.setState({products: doc.docs })
         //   Cuando devuelva los productos, me devuelve todos las ordenes si es admin, sino los que cumplan el where
           if(this.state.user){
