@@ -63,7 +63,7 @@ export const Payment = () => {
                     </form>
                 </>:
                 <div className='container'>
-                    <h2 style={{textAlign: "center"}}>Aún no has iniciado sesión</h2>
+                    <h2 style={{textAlign: "center"}}>Para hacer un pedido debes iniciar sesión</h2>
                     <div className='btn-container'>
                     <Link to='/login'>
                         <button className="btn-confirm" >Iniciar</button>

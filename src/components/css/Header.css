@@ -67,7 +67,7 @@ header .close{
         flex-direction: column;
         background: white;
         z-index: 99;
-        opacity: 0.77;
+        opacity: 0.97;
         transition: 0.2s linear;
     }
     header .menu,

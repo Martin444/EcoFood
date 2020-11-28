@@ -21,8 +21,8 @@ export default function Login() {
                                     <button className="btn-google" onClick={logOut} >Cerrar sesión</button>
                                 </Link>
                                 :
-                                <Link to='/cart'>
-                                    <button className="btn-google" >Vuelve al carrito</button>
+                                <Link to='/confirmar'>
+                                    <button className="btn-google" >Terminar el pedido</button>
                                 </Link>
                             }
                         </>
