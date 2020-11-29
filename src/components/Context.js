@@ -210,7 +210,7 @@ export class DataProvider extends Component {
                                this.setState({orders: snapshoot.docs, userAdmin: true})
                            })
                          } else {
-                               firebase.firestore().collection('orders').orderBy('completed', 'asc').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
+                               firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).orderBy('completed', 'asc').onSnapshot(snapshoot => {
                                    this.setState({orders: snapshoot.docs, userAdmin: false})
                                })
            
