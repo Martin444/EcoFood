@@ -111,7 +111,7 @@ export default function FormProduct() {
                     </div>
                 :
                 <div className='containerFotm'>
-                        <h1>Mirá las delicias que tenemos</h1>
+                        <h1>Mirá lo que tenemos para vos</h1>
                 </div>
             }
         </DivForm>
@@ -135,12 +135,16 @@ const DivForm = styled.div`
         border-radius: 5px;
     }
 
+    h1{
+        color:white;
+    }
+
     .btn-load{
         padding:10px;
         color: white;
         font-size: 18px;
         font-weight: 600;
-        background-color: black;
+        background-color: #67B31B;
         border:none;
         border-radius: 10px;
     }
@@ -176,7 +180,7 @@ const DivForm = styled.div`
             color: white;
             font-size: 15px;
             font-weight: 600;
-            background-color: black;
+            background-color: #67B31B;
             border:none;
             border-radius: 10px;
             margin: 10px;

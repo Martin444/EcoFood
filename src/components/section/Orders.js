@@ -44,7 +44,10 @@ const Content = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-
+    padding-top: 90px;
+    background-color: #2A302C;
+    color: white;
+    
     .contentpage{
         width:1200px;
         display: block;

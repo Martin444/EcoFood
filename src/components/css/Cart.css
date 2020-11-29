@@ -1,10 +1,14 @@
 section .cart{
     position: relative;
-    border: 1px solid #ccc;
+    border: 1px solid #2A302C;
+    padding-top: 100px;
+    background-color: #2A302C;
+    color:white;
     /* width: 1200px; */
 }
 
 .conten-cart{
+    padding-top: 100px;
     /* width: 100%; */
     max-width: 1200px;
     display: block;
@@ -12,20 +16,27 @@ section .cart{
     justify-content: center;
 }
 
+.row {
+    color:  #67B31B;
+}
+
 /* .details{
     width: 1200px;
 } */
 .amount span{
-    color: crimson;
+    color: #67B31B;
     padding: 0 24px;
 }
 .amount .count{
     width: 40px;
-    height: 30px;
-    border: 1px solid #555;
+    height: 40px;
+    border: 1px solid #ccc;
     outline: none;
     background: transparent;
     cursor: pointer;
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
 }
 .delete{
     /* width: 50px; */
@@ -34,8 +45,8 @@ section .cart{
     right: 5px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 40px;
-    color: crimson;
+    font-size: 20px;
+    color: #67B31B;
     padding-right: 20px;
 }
 
@@ -50,7 +61,7 @@ section .cart{
 }
 .total a{
     text-decoration: none;
-    background: #333;
+    background: #67B31B;
     color: white;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -58,7 +69,7 @@ section .cart{
 }
 .total h3{
     margin-right: 50px;
-    color: crimson;
+    color: #67B31B;
 }
 
 @media (max-width: 769px){

@@ -47,6 +47,9 @@ const DivLogin = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #2A302C;
+    color: white;
+    padding-top: 100px;
 
     .content{
         display: block;
@@ -63,8 +66,8 @@ const DivLogin = styled.div`
         border-radius: 5px;
         color:white;
         font-size: 20px;
-        font-weight: 600;
-        background-color: black;
+        font-weight: 700;
+        background: #67B31B;
     }
 
     .btn-google:hover{

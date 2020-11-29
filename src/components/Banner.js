@@ -16,23 +16,22 @@ export default function Banner() {
 
 
 const Bann = styled.div`
-
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 60vh;
+    margin: 0;
+    height: 80vh;
+    background-color: #2A302C;
     text-align: center;
-    background-image: linear-gradient(to bottom, rgba(97, 41, 153, 0.20), rgba(22, 162, 217, 0.25)), url(${ImaBanner});
+    background-image: linear-gradient(to bottom, rgba(42, 48, 44, 0.20), rgba(42, 48, 44, 0.25)), url(${ImaBanner});
     background-size: cover;
     color: #fff;
 
     .ban-content{
         margin: 0;
-        padding:0 auto;
+        /* padding:0 auto]; */
         display: block;
         justify-content: center;
         height: 100%;
-        margin-top:150px;
+        padding-top:150px;
     }
 
     .title{

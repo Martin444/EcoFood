@@ -6,12 +6,13 @@ header{
     justify-content: space-around;
     align-items: center;
     overflow: hidden;
-    background-color: white;
+    background-color: #2A302C;
+    color: white;
 }
 header .logo a{
     text-decoration: none;
     text-transform: uppercase;
-    color: black;
+    color: #67B31B;
 }
 header nav{
     display: flex;
@@ -28,11 +29,11 @@ nav ul li{
 nav ul li a{
     text-decoration: none;
     text-transform: uppercase;
-    color: #555;
+    color: white;
     padding: 0 15px;
 }
 nav ul li a:hover{
-    color: lightseagreen;
+    color: #67B31B;
 }
 nav .nav-cart{
     cursor: pointer;
@@ -42,7 +43,7 @@ nav .nav-cart span{
     position: absolute;
     top:-12px;
     right: -7px;
-    background: crimson;
+    background: #67B31B;
     font-size: 10px;
     color: white;
     padding: 3px 5px;
