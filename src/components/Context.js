@@ -159,7 +159,7 @@ export class DataProvider extends Component {
         //   Cuando devuelva los productos, me devuelve todos las ordenes si es admin, sino los que cumplan el where
           if(this.state.user){
               if(this.state.user.admin){
-                  firebase.firestore().collection('orders').onSnapshot(snapshoot => {
+                  firebase.firestore().collection('orders').orderBy('completed','asc').onSnapshot(snapshoot => {
                       console.log(snapshoot)
                   })
                   
@@ -206,11 +206,11 @@ export class DataProvider extends Component {
                    if(this.state.user){
                        if(this.state.user.admin){
                            
-                           firebase.firestore().collection('orders').onSnapshot(snapshoot => {
+                           firebase.firestore().collection('orders').orderBy('completed', 'asc').onSnapshot(snapshoot => {
                                this.setState({orders: snapshoot.docs, userAdmin: true})
                            })
                          } else {
-                               firebase.firestore().collection('orders').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
+                               firebase.firestore().collection('orders').orderBy('completed', 'asc').where('userID','==', this.state.user.uid).onSnapshot(snapshoot => {
                                    this.setState({orders: snapshoot.docs, userAdmin: false})
                                })
            

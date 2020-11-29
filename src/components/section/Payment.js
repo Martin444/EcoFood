@@ -25,16 +25,35 @@ export const Payment = () => {
                 'numberPhone' : form.get('number'),
                 'direction' : form.get('direction'),
                 'order' : cart,
-                'total' : total
+                'total' : total,
+                'completed' : false
             }
 
             
             firebase.firestore().collection('orders').add(data).then((doc)=>{
-                console.log(user)
-                resetData();
-                setConfirm(true)
-             });
+
+                const data2 = {
+                    'date': newDate,
+                    'userID': user.uid,
+                    'name' : user.displayName,
+                    'email' : user.email,
+                    'photoUrl' : user.photoUrl,
+                    'numberPhone' : form.get('number'),
+                    'direction' : form.get('direction'),
+                    'order' : cart,
+                    'total' : total,
+                    'completed' : false,
+                    'uid' : doc.id
+                }
+
+                firebase.firestore().collection('orders').doc(doc.id).set(data2).then((t)=>{
+                    setConfirm(true)
+                    resetData();
+                })
+            });
         }
+
+    
         return (
             confirm ?
             <Conten>

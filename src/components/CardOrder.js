@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext } from 'react'
 import styled from 'styled-components'
 import { DataContext } from './Context'
+import firebase from '../Utils/firebase'
 
 export default function CardOrder(props) {
     const {user} = useContext(DataContext);
@@ -11,8 +12,8 @@ export default function CardOrder(props) {
     var unix = props.data.data().date;
     var date = new Date(unix);
     
+    console.log(props.data.data().completed);
     var hours = date.getDate();
-    console.log(hours);
 
         var minutes = date.getMonth() + 1;
         switch (minutes) {
@@ -56,40 +57,63 @@ export default function CardOrder(props) {
                 break;
         
 
-    }
+        }
+
+
+        const deleteOrder =()=>{
+            if(props.data.data().completed){
+                alert('La orden no puede eliminarse en este momento, si tu producto no llegó intenta comunicarte')
+            } else {
+                firebase.firestore().collection('orders').doc(props.data.data().uid).delete()
+            }
+        }
+
+        const checkOrder =() => {
+            firebase.firestore().collection('orders').doc(props.data.data().uid).update({
+                'completed' : true,
+            })
+        }
 
 
     return (
         <Card>
-            <div className='row-title'>
-                <h2>{props.data.data().date}</h2>
-                <h4>Total: {props.data.data().total} pesos</h4>
-            </div>
-            <div className='conten-info'>
-                <div className='column-resume'>
-                    {
-                        props.data.data().order.map(item=>{
-                            return <div>
-                                <p><strong>{item.quantity} - {item.title}</strong></p>
-                            </div> 
-                        })
-                    }
+            <div className= {props.data.data().completed ? 'blackback' : 'whiteBack'}>
+                <div className='row-title'>
+                    <h2>{props.data.data().date}</h2>
+                    <h4>Total: {props.data.data().total} pesos</h4>
                 </div>
-                <div className='column-info'>
-                    <p>Dirección: <strong>{props.data.data().direction}</strong></p>
-                    <p>Numero de teléfono: <strong>{props.data.data().numberPhone}</strong></p>
-                    <p>Fecha: <strong>{formatedTime}</strong></p>
-                    <p>Nombre: <strong>{props.data.data().name}</strong></p>
-                    <p>Email: <strong>{props.data.data().email}</strong></p>
-                </div>
-            </div>
-            {
-                user.admin ?
-                    <button className='btn-confirm'>Listo</button>
-                    :
-                    <button className='btn-confirm'>Cancelar</button>
 
-            }
+                <div className='conten-info'>
+                    <div className='column-resume'>
+                        {
+                            props.data.data().order.map(item=>{
+                                return <div>
+                                    <p><strong>{item.quantity} - {item.title}</strong></p>
+                                </div> 
+                            })
+                        }
+                    </div>
+                    <div className='column-info'>
+                        <p>Dirección: <strong>{props.data.data().direction}</strong></p>
+                        <p>Numero de teléfono: <strong>{props.data.data().numberPhone}</strong></p>
+                        <p>Fecha: <strong>{formatedTime}</strong></p>
+                        <p>Nombre: <strong>{props.data.data().name}</strong></p>
+                        <p>Email: <strong>{props.data.data().email}</strong></p>
+                    </div>
+                </div>
+            
+                {
+                    user.admin ?
+                        <button className='btn-confirm' onClick={()=>{
+                            checkOrder()
+                        }}>Listo</button>
+                        :
+                        <button className='btn-confirm' onClick={()=>{
+                            deleteOrder()
+                        }}>Cancelar</button>
+
+                }
+            </div>
         </Card>
     )
 }
@@ -100,6 +124,10 @@ const Card = styled.div`
     border: 1px solid #ccc;
     padding: 10px;
     margin-bottom: 15px;
+
+    .blackback{
+        background-color: #ccc;
+    }
 
     .row-title{
         display: flex;
