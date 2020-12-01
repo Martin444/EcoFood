@@ -122,11 +122,12 @@ const Card = styled.div`
     width: 100%;
     border-radius: 10px;
     border: 1px solid #ccc;
-    padding: 10px;
     margin-bottom: 15px;
-
+    padding: 10px;
+    
     .blackback{
-        background-color: #ccc;
+        padding: 10px;
+        background-color: #0F3B1E;
     }
 
     .row-title{
@@ -165,7 +166,7 @@ const Card = styled.div`
         color:white;
         font-size: 20px;
         font-weight: 600;
-        background-color: black;
+        background-color: #67B31B;
     }
 
     .btn-confirm:hover{

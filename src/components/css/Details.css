@@ -6,6 +6,7 @@
     justify-content: center;
     /* flex-wrap: wrap; */
     margin: 0 auto;
+    color:white;
 }
 .details img{
     max-width: 500px;
@@ -34,7 +35,7 @@
     letter-spacing: 2px;
 }
 .box .row span{
-    color: crimson;
+    color:#67B31B;
 }
 .box .colors button{
     width: 30px;
@@ -50,7 +51,7 @@
 }
 .box .cart{
     width: 150px;
-    background: #333;
+    background: #67B31B;
     color: white;
     text-decoration: none;
     padding: 10px 25px;

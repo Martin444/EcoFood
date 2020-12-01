@@ -75,10 +75,10 @@
         min-width: 300px;
         /* min-height: 400px; */
         height: 100%;
-        border: 1px solid #eee;
+        border: 1px solid #2A302C;
         overflow: hidden;
         padding: 10px;
-        box-shadow: 2px 8px 20px #ddd;
+        box-shadow: 2px 8px 20px#1C201D;
         margin: 10px;
         transition: 0.5s linear;
     }

@@ -34,15 +34,15 @@ export class Header extends Component {
                     </div>
                     <nav>
                         <ul className={toggle ? "toggle" : ""}>
-                            <li><Link to="/">Inicio</Link></li>
-                            <li><Link to="/ordenes">Mis Ordenes</Link></li>
+                            <li onClick={this.menuToggle}><Link to="/">Inicio</Link></li>
+                            <li onClick={this.menuToggle}><Link to="/ordenes">Mis Ordenes</Link></li>
                           
                             {/* <li><Link to="/about">About</Link></li> */}
                             {
                                 user ?
-                                <li><Link to="/login"><img className='profile' src={user.photoUrl} alt="" width="30"/></Link></li>
+                                <li onClick={this.menuToggle}><Link to="/login"><img className='profile' src={user.photoUrl} alt="" width="30"/></Link></li>
                                 :
-                                <li><Link to="/login">Iniciar</Link></li>
+                                <li onClick={this.menuToggle}><Link to="/login">Iniciar</Link></li>
                             }
                             <li className="close" onClick={this.menuToggle}>
                                 <img src={Close} alt="" width="20"/>
